@@ -8,12 +8,11 @@ public class Address {
     private String zipCode;
     private String state;
 
-    public Address(String streetNumber, String streetName, String additionalAddressLine, String zipCode, String state) {
+    public Address(String streetNumber, String streetName, String additionalAddressLine, String zipCode) {
         this.streetNumber = streetNumber;
         this.streetName = streetName;
         this.additionalAddressLine = additionalAddressLine;
         this.zipCode = zipCode;
-        this.state = state;
     }
 
     public String getStreetNumber() {
@@ -35,4 +34,5 @@ public class Address {
     public String getState() {
         return state;
     }
+
 }

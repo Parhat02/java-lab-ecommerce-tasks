@@ -8,23 +8,18 @@ public abstract class Discount {
     private String name;
     private Double thresholdAmount;
 
-    public Discount(UUID id, String name, Double thresholdAmount) {
-        this.id = id;
-        this.name = name;
-        this.thresholdAmount = thresholdAmount;
-    }
-
-    public abstract Double calculateCartAmountAfterDiscountApplied(Double amount);
+    public Double calculateCartAmountAfterDiscountApplied(Double amount);
 
     public UUID getId() {
         return id;
     }
 
-    public String getName() {
+    public abstract String getName() {
         return name;
     }
 
     public Double getThresholdAmount() {
         return thresholdAmount;
     }
+
 }

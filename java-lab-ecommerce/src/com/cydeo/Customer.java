@@ -1,6 +1,5 @@
 package com.cydeo;
 
-import java.util.List;
 import java.util.UUID;
 
 public class Customer {
@@ -8,7 +7,7 @@ public class Customer {
     private UUID id;
     private String userName;
     private String email;
-    private List<Address> addressList;
+    private String addressList;
 
     public Customer(UUID id, String userName, String email) {
         this.id = id;
@@ -16,7 +15,7 @@ public class Customer {
         this.email = email;
     }
 
-    public Customer(UUID id, String userName, String email, List<Address> addressList) {
+    public Customer(UUID id, String userName, String email, String addressList) {
         this.id = id;
         this.userName = userName;
         this.email = email;
@@ -35,7 +34,8 @@ public class Customer {
         return email;
     }
 
-    public List<Address> getAddressList() {
+    public String getAddressList() {
         return addressList;
     }
+
 }

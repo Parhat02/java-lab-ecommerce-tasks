@@ -1,7 +1,5 @@
 package com.cydeo.category;
 
-import com.cydeo.category.Category;
-
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -19,6 +17,7 @@ public class Electronic extends Category {
 
     @Override
     public String generateCategoryCode() {
-        return "EL-" + getId().toString().substring(0,16);
+        return "EL-" + getId().toString().substring(0, 16);
     }
+
 }

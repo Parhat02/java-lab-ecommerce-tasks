@@ -13,4 +13,5 @@ public class SkinCare extends Category {
     public LocalDateTime findDeliveryDueDate() {
         return LocalDateTime.now();
     }
+
 }

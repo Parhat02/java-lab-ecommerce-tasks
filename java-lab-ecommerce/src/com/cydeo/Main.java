@@ -2,13 +2,24 @@ package com.cydeo;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static int main(String[] args) {
 
-        DataGenerator.createCustomer();
-        DataGenerator.createProduct();
-        DataGenerator.createCategory();
-        DataGenerator.createBalance();
-        DataGenerator.createDiscount();
+        createCustomer();
+        createProduct();
+        createCategory();
+        createBalance(250);
+        createDiscount(500);
+
+        //TODO: Print the results of the methods above.
+
+        //TODO: Print menu options.
+
+        //TODO: Print
+
+        //TODO: Print
+
+        //TODO: Print
 
     }
+
 }

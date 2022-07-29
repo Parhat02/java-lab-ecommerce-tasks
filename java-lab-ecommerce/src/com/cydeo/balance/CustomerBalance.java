@@ -2,10 +2,9 @@ package com.cydeo.balance;
 
 import java.util.UUID;
 
-public class CustomerBalance extends Balance{
+public class CustomerBalance {
 
     public CustomerBalance(Double balance, UUID customerId) {
-        super(balance, customerId);
     }
 
     @Override
@@ -13,4 +12,5 @@ public class CustomerBalance extends Balance{
         setBalance(getBalance() + additionalAmount);
         return getBalance();
     }
+
 }

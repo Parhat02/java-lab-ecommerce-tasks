@@ -9,10 +9,11 @@ import java.util.List;
 
 public class StaticConstants {
 
-    public static final List<Customer> CUSTOMER_LIST = new ArrayList<>();
-    public static final List<Category> CATEGORY_LIST = new ArrayList<>();
-    public static final List<Product> PRODUCT_LIST = new ArrayList<>();
-    public static final List<Balance> CUSTOMER_BALANCE_LIST = new ArrayList<>();
-    public static final List<Balance> GIFT_CARD_BALANCE_LIST = new ArrayList<>();
-    public static final List<Discount> DISCOUNT_LIST = new ArrayList<>();
+    public final List<Customer> CUSTOMER_LIST = new ArrayList<>();
+    public final List<Category> CATEGORY_LIST = new ArrayList<>();
+    public final List<Balance> PRODUCT_LIST = new ArrayList<>();
+    public final List<Balance> CUSTOMER_BALANCE_LIST = new ArrayList<>();
+    public final List<String> GIFT_CARD_BALANCE_LIST = new ArrayList<>();
+    public final List<Discount> DISCOUNT_LIST = new ArrayList<>();
+
 }

@@ -3,7 +3,7 @@ package com.cydeo.category;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public abstract class Category {
+public class Category {
 
     private UUID id;
     private String name;
@@ -13,18 +13,14 @@ public abstract class Category {
         this.name = name;
     }
 
-    public abstract LocalDateTime findDeliveryDueDate();
+    public LocalDateTime findDeliveryDueDate();
 
-
-    public String generateCategoryCode(){
-        return id.toString().substring(0,8).concat(" - ").concat(name.substring(0,2));
-    }
-
-    public UUID getId() {
-        return id;
+    public String generateCategoryCode() {
+        return id.toString().substring(0, 8).concat(" - ").concat(name.substring(0, 2));
     }
 
     public String getName() {
         return name;
     }
+
 }
