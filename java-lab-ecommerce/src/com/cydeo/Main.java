@@ -5,20 +5,11 @@ public class Main {
     public static int main(String[] args) {
 
         createCustomer();
-        createProduct();
+        createProduct(250);
         createCategory();
-        createBalance(250);
-        createDiscount(500);
 
-        //TODO: Print the results of the methods above.
-
-        //TODO: Print menu options.
-
-        //TODO: Print
-
-        //TODO: Print
-
-        //TODO: Print
+        //TODO Select user
+        //TODO Print menu options. (Menu should be printed until exit option is selected)
 
     }
 
