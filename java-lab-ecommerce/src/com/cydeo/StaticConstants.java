@@ -11,4 +11,8 @@ public class StaticConstants {
     public static final List<Category> CATEGORY_LIST = new ArrayList<>();
     public static final List<Product> PRODUCT_LIST = new ArrayList<>();
 
+    public static final String[] MenuOptions = new String[]{"List Categories","List Products","List Discount","See Balance","Add Balance",
+                "Place an order","See Cart","See order details","See your address","Close App"};
+
+
 }
