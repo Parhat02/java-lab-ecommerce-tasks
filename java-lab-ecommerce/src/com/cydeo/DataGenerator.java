@@ -1,5 +1,8 @@
 package com.cydeo;
 
+import com.cydeo.balance.Balance;
+import com.cydeo.balance.CustomerBalance;
+import com.cydeo.balance.GiftCartBalance;
 import com.cydeo.category.Category;
 import com.cydeo.category.Electronic;
 import com.cydeo.category.Furniture;
@@ -52,6 +55,17 @@ public class DataGenerator {
         StaticConstants.PRODUCT_LIST.add(product2);
         StaticConstants.PRODUCT_LIST.add(product3);
         StaticConstants.PRODUCT_LIST.add(product4);
+
+    }
+
+    public static void createBalance() {
+
+        Balance customerBalance = new CustomerBalance(StaticConstants.CUSTOMER_LIST.get(0).getId(), 45000.00);
+        Balance giftCardBalance = new GiftCartBalance(StaticConstants.CUSTOMER_LIST.get(1).getId(), 50000.00);
+
+        StaticConstants.CUSTOMER_BALANCE_LIST.add(customerBalance);
+        StaticConstants.GIFT_CARD_BALANCE_LIST.add(giftCardBalance);
+
 
     }
 
