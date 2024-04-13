@@ -5,6 +5,7 @@ import com.cydeo.balance.CustomerBalance;
 import com.cydeo.balance.GiftCartBalance;
 import com.cydeo.category.Category;
 import com.cydeo.discount.Discount;
+import com.cydeo.order.Order;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -126,22 +127,36 @@ public class Main {
                         if (!decision.equals("Y")){
                             break;
                         }
-
                     }
-
                 case 6:
+                    System.out.println("Your Cart: ");
+                    if (!cart.getProductMap().keySet().isEmpty()){
+                        for (Product product:cart.getProductMap().keySet()){
+                            System.out.println("Product name: " + product.getName() + ", Count: " + cart.getProductMap().get(product));
+                        }
+                    }else {
+                        System.out.println("Your cart is empty");
+                    }
                     break;
                 case 7:
+                    printOrdersByCustomerId(customer.getId());
                     break;
                 case 8:
+                    printAddressByCustomer(customer);
                     break;
                 case 9:
+                    System.exit(1);
                     break;
-
             }
-
         }
+    }
 
+    private static void printAddressByCustomer(Customer customer) {
+        for (Address address : customer.getAddressList()) {
+            System.out.println(" Street Name: " + address.getStreetName() +
+                    " Street Number: " + address.getStreetNumber() + "ZipCode:  "
+                    + address.getZipCode() + " State: " + address.getState());
+        }
     }
 
     private static boolean putItemToCartIfStockAvailable(Cart cart, Product product) {
@@ -195,6 +210,14 @@ public class Main {
         GiftCartBalance newGifCardBalance = new GiftCartBalance(customerId, 0d);
         StaticConstants.GIFT_CARD_BALANCE_LIST.add(newGifCardBalance);
         return newGifCardBalance;
+    }
+
+    private static void printOrdersByCustomerId(UUID customerId) {
+        for (Order order : StaticConstants.ORDER_LIST) {
+            if (order.getCustomerId().equals(customerId)){
+                System.out.println("Order status: " + order.getOrderStatus() + " order amount " + order.getPaidAmount() + " order date " + order.getOrderDate());
+            }
+        }
     }
 
 }
