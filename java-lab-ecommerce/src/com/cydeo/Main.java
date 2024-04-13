@@ -110,7 +110,7 @@ public class Main {
                                 System.out.println(e.getMessage());;
                             }
                         }
-                        String productId = scanner.next();
+                        String productId = scanner.nextLine();
 
                         try {
                             Product product = findProductById(productId);
