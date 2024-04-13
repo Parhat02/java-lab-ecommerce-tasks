@@ -6,6 +6,9 @@ import com.cydeo.balance.GiftCartBalance;
 import com.cydeo.category.Category;
 import com.cydeo.category.Electronic;
 import com.cydeo.category.Furniture;
+import com.cydeo.discount.AmountBasedDiscount;
+import com.cydeo.discount.Discount;
+import com.cydeo.discount.RateBasedDiscount;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +69,15 @@ public class DataGenerator {
         StaticConstants.CUSTOMER_BALANCE_LIST.add(customerBalance);
         StaticConstants.GIFT_CARD_BALANCE_LIST.add(giftCardBalance);
 
+    }
 
+    public static void createDiscount(){
+
+        Discount amountBasedDiscount = new AmountBasedDiscount(UUID.randomUUID(), "Buy 250 Free 50", 250.00, 50.00);
+        Discount rateBasedDiscount = new RateBasedDiscount(UUID.randomUUID(), "Buy 500 Free %15", 500.00, 15.00);
+
+        StaticConstants.DISCOUNTS_LIST.add(amountBasedDiscount);
+        StaticConstants.DISCOUNTS_LIST.add(rateBasedDiscount);
     }
 
 }
