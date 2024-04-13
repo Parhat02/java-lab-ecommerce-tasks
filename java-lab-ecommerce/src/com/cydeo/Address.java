@@ -2,17 +2,18 @@ package com.cydeo;
 
 public class Address {
 
-    private String streetNumber;
-    private String streetName;
-    private String additionalAddressLine;
-    private String zipCode;
-    private String state;
+    private final String streetNumber;
+    private final String streetName;
+    private final String additionalAddressLine;
+    private final String zipCode;
+    private final String state;
 
-    public Address(String streetNumber, String streetName, String additionalAddressLine, String zipCode) {
+    public Address(String streetNumber, String streetName, String additionalAddressLine, String zipCode, String state) {
         this.streetNumber = streetNumber;
         this.streetName = streetName;
         this.additionalAddressLine = additionalAddressLine;
         this.zipCode = zipCode;
+        this.state = state;
     }
 
     public String getStreetNumber() {
@@ -34,5 +35,7 @@ public class Address {
     public String getState() {
         return state;
     }
+
+
 
 }

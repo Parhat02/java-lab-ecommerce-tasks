@@ -12,7 +12,7 @@ public class Furniture extends Category {
     @Override
     public LocalDateTime findDeliveryDueDate() {
         LocalDateTime localDateTime = LocalDateTime.now();
-        return localDateTime.plusDays(1);
+        return localDateTime.plusDays(2);
     }
 
 }

@@ -2,14 +2,14 @@ package com.cydeo;
 
 import java.util.UUID;
 
-public interface Product {
+public class Product {
 
-    private UUID id;
-    private String name;
-    private Double price;
-    private Integer stock;
-    private Integer remainingStock;
-    private UUID categoryId;
+    private final UUID id;
+    private final String name;
+    private final Double price;
+    private final Integer stock;
+    private final Integer remainingStock;
+    private final UUID categoryId;
 
     public Product(UUID id, String name, Double price, Integer stock, Integer remainingStock, UUID categoryId) {
         this.id = id;
