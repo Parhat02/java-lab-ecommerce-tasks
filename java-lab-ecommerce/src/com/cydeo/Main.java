@@ -6,6 +6,8 @@ import com.cydeo.balance.GiftCartBalance;
 import com.cydeo.category.Category;
 import com.cydeo.discount.Discount;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -27,6 +29,8 @@ public class Main {
         }
 
         Customer customer = StaticConstants.CUSTOMER_LIST.get(scanner.nextInt());
+
+        Cart cart = new Cart(customer);
 
         //TODO Print menu options. (Menu should be printed until exit option is selected)
         while (true){
@@ -91,7 +95,40 @@ public class Main {
                     }
                     break;
                 case 5:
-                    break;
+                    Map<Product, Integer> map = new HashMap<>();
+                    cart.setProductMap(map);
+                    while (true){
+                        System.out.println("Which product you want to add to your cart. For exist product selection Type : exist");
+
+                        for (Product product : StaticConstants.PRODUCT_LIST) {
+                            try {
+                                System.out.println("id: " + product.getId() + ", Price: " + product.getPrice()+ ", Category Name: "
+                                + product.getCategoryName() + ", Stock: " + product.getRemainingStock() +
+                                        ", Product delivery due : " + product.getDeliveryDueDate());
+                            } catch (Exception e) {
+                                System.out.println(e.getMessage());;
+                            }
+                        }
+                        String productId = scanner.next();
+
+                        try {
+                            Product product = findProductById(productId);
+                            if (!putItemToCartIfStockAvailable(cart, product)){
+                                System.out.println("Stock is insufficient. Please try again");
+                                continue;
+                            }
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());;
+                        }
+
+                        System.out.println("Do you want to add more product. Type Y for adding more, N for exist");
+                        String decision = scanner.nextLine();
+                        if (!decision.equals("Y")){
+                            break;
+                        }
+
+                    }
+
                 case 6:
                     break;
                 case 7:
@@ -103,14 +140,37 @@ public class Main {
 
             }
 
+        }
 
+    }
 
+    private static boolean putItemToCartIfStockAvailable(Cart cart, Product product) {
+        System.out.println("Please provide product count: ");
+        Scanner scanner = new Scanner(System.in);
+        int count = scanner.nextInt();
 
+        Integer cartCount = cart.getProductMap().get(product);
 
-
+        if (cartCount!=null && product.getRemainingStock() > cartCount+count){
+            cart.getProductMap().put(product, cartCount+count);
+            return true;
+        } else if (product.getRemainingStock() >= count) {
+            cart.getProductMap().put(product, count);
+            return true;
+        }else {
+            return false;
         }
 
 
+    }
+
+    private static Product findProductById(String productId) throws Exception {
+        for (Product product : StaticConstants.PRODUCT_LIST) {
+            if (product.getId().toString().equals(productId)){
+                return product;
+            }
+        }
+        throw new Exception("Product not found! Please try again");
     }
 
     private static CustomerBalance findCustomerBalance(UUID customerId) {

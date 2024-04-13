@@ -2,6 +2,7 @@ package com.cydeo;
 
 import com.cydeo.category.Category;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Product {
@@ -46,12 +47,21 @@ public class Product {
         return categoryId;
     }
 
-    public String getCategoryName(){
+    public String getCategoryName() throws Exception {
         for (Category category : StaticConstants.CATEGORY_LIST) {
             if (category.getId().equals(getCategoryId())){
                 return category.getName();
             }
         }
-        throw new RuntimeException("Category not found : " + getName());
+        throw new Exception("Category not found : " + getName());
+    }
+
+    public LocalDateTime getDeliveryDueDate() throws Exception {
+        for (Category category : StaticConstants.CATEGORY_LIST) {
+            if (getCategoryId().equals(category.getId())){
+                return category.findDeliveryDueDate();
+            }
+        }
+        throw new Exception("Category could not found!");
     }
 }
