@@ -1,5 +1,7 @@
 package com.cydeo;
 
+import com.cydeo.category.Category;
+
 import java.util.UUID;
 
 public class Product {
@@ -44,4 +46,12 @@ public class Product {
         return categoryId;
     }
 
+    public String getCategoryName(){
+        for (Category category : StaticConstants.CATEGORY_LIST) {
+            if (category.getId().equals(getCategoryId())){
+                return category.getName();
+            }
+        }
+        throw new RuntimeException("Category not found : " + getName());
+    }
 }
