@@ -1,9 +1,13 @@
 package com.cydeo;
 
+import com.cydeo.balance.Balance;
+import com.cydeo.balance.CustomerBalance;
+import com.cydeo.balance.GiftCartBalance;
 import com.cydeo.category.Category;
 import com.cydeo.discount.Discount;
 
 import java.util.Scanner;
+import java.util.UUID;
 
 public class Main {
 
@@ -57,9 +61,34 @@ public class Main {
                         + ", Discount Threshold Amount: " + discount.getThresholdAmount());
                     }
                     break;
-                case 3:
+                case 3: //List Balance
+                    CustomerBalance cBalance = findCustomerBalance(customer.getId());
+                    GiftCartBalance gBalance = findGiftCardBalance(customer.getId());
+                    double totalBalance = cBalance.getBalance() + gBalance.getBalance();
+                    System.out.println("Total Balance: " + totalBalance);
+                    System.out.println("Customer Balance: " + cBalance.getBalance());
+                    System.out.println("Gift Card Balance: " + gBalance.getBalance());
                     break;
                 case 4:
+                    CustomerBalance customerBalance = findCustomerBalance(customer.getId());
+                    GiftCartBalance giftCardBalance = findGiftCardBalance(customer.getId());
+                    System.out.println("Which account would you like to add?");
+                    System.out.println("Type 1 For Customer Balance: " + customerBalance.getBalance());
+                    System.out.println("Type 2 For Gift Card Balance: " + giftCardBalance.getBalance());
+                    int balanceSelection = scanner.nextInt();
+                    System.out.println("How much would you like to add?");
+                    double additionalAmount = scanner.nextInt();
+
+                    switch (balanceSelection){
+                        case 1:
+                            customerBalance.addBalance(additionalAmount);
+                            System.out.println("New Customer Balance: " + customerBalance.getBalance());
+                            break;
+                        case 2:
+                            giftCardBalance.addBalance(additionalAmount);
+                            System.out.println("New Customer Balance: " + giftCardBalance.getBalance());
+                            break;
+                    }
                     break;
                 case 5:
                     break;
@@ -82,6 +111,30 @@ public class Main {
         }
 
 
+    }
+
+    private static CustomerBalance findCustomerBalance(UUID customerId) {
+
+        for (Balance customerBalance : StaticConstants.CUSTOMER_BALANCE_LIST){
+            if (customerBalance.getCustomerId().equals(customerId)){
+                return (CustomerBalance) customerBalance;
+            }
+        }
+        CustomerBalance newCustomerBalance = new CustomerBalance(customerId, 0d);
+        StaticConstants.CUSTOMER_BALANCE_LIST.add(newCustomerBalance);
+        return newCustomerBalance;
+    }
+
+    private static GiftCartBalance findGiftCardBalance(UUID customerId) {
+
+        for (Balance giftCardBalance : StaticConstants.GIFT_CARD_BALANCE_LIST) {
+            if (giftCardBalance.getCustomerId().equals(customerId)){
+                return (GiftCartBalance) giftCardBalance;
+            }
+        }
+        GiftCartBalance newGifCardBalance = new GiftCartBalance(customerId, 0d);
+        StaticConstants.GIFT_CARD_BALANCE_LIST.add(newGifCardBalance);
+        return newGifCardBalance;
     }
 
 }
