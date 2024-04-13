@@ -6,6 +6,8 @@ import com.cydeo.balance.GiftCartBalance;
 import com.cydeo.category.Category;
 import com.cydeo.discount.Discount;
 import com.cydeo.order.Order;
+import com.cydeo.order.OrderService;
+import com.cydeo.order.OrderServiceImpl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -127,6 +129,17 @@ public class Main {
                         if (!decision.equals("Y")){
                             break;
                         }
+
+                        OrderService orderService = new OrderServiceImpl();
+                        String result = orderService.placeOrder(cart);
+                        if (result.equals("Order has been placed successfully")) {
+                            System.out.println("Order is successful");
+                            updateProductStock(cart.getProductMap());
+                            cart.setProductMap(new HashMap<>());
+                            cart.setDiscountId(null);
+                        } else {
+                            System.out.println(result);
+                        }
                     }
                 case 6:
                     System.out.println("Your Cart: ");
@@ -148,6 +161,12 @@ public class Main {
                     System.exit(1);
                     break;
             }
+        }
+    }
+
+    private static void updateProductStock(Map<Product, Integer> map) {
+        for (Product product : map.keySet()) {
+            product.setRemainingStock(product.getRemainingStock() - map.get(product));
         }
     }
 

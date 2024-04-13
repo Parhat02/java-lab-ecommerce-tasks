@@ -11,7 +11,7 @@ public class Product {
     private final String name;
     private final Double price;
     private final Integer stock;
-    private final Integer remainingStock;
+    private Integer remainingStock;
     private final UUID categoryId;
 
     public Product(UUID id, String name, Double price, Integer stock, Integer remainingStock, UUID categoryId) {
@@ -41,6 +41,9 @@ public class Product {
 
     public Integer getRemainingStock() {
         return remainingStock;
+    }
+    public void setRemainingStock(Integer remainingStock) {
+        this.remainingStock = remainingStock;
     }
 
     public UUID getCategoryId() {
